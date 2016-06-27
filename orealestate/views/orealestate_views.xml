@@ -1,7 +1,7 @@
 <odoo>
   <data>
 
-    <!-- Real estate Tree view definition. Never forget to start record_id by the module name. -->
+    <!-- Real estate Tree view definition.-->
     <record model="ir.ui.view" id="orealestate.list">
       <field name="name">List of properties</field>
       <field name="model">orealestate.realestate</field>
@@ -14,19 +14,6 @@
         </tree>
       </field>
     </record>
-
-    <!-- Stages tree view -->
-    <!--<record model="ir.ui.view" id="orealestate_realestate_stage_list">
-      <field name="name">Stages</field>
-      <field name="model">orealestate.realestate.stage</field>
-      <field name="arch" type="xml">
-        <tree string="Business stages">
-          <field name="sequence" widget="handle"/>
-          <field name="name"/>
-          <field name="fold"/>
-        </tree>
-      </field>
-    </record>-->
 
     <!-- Areas tree view -->
     <record model="ir.ui.view" id="orealestate_realestate_area_list">
@@ -88,7 +75,7 @@
           <field name="user_id" on_change="0"/>
         </field>
         <field name="partner_id" position="before">
-          <field name="mandate"/>
+          <field name="mandate" attrs="{'invisible': [('mandate', '=', False)]}"/>
         </field>
         <field name="team_id" position="before">
           <field name="property_id"/>
@@ -116,6 +103,10 @@
       <field name="arch" type="xml">
         <form>
           <header>
+            <field name="stage_id"
+              widget="statusbar"
+              domain="[('team_ids', '=', team_id)]"
+              options="{'fold_field': 'fold'}"/>
           </header>
           <sheet>
             <field name="id" invisible="1"/>
@@ -171,13 +162,13 @@
                   readonly="1"
                   required="0"
                   attrs="{'invisible': [('id', '=', False)]}"/>
-                <field 
+                <!--<field 
                   name="stage_id"
                   string="Current stage"
                   readonly="1"
                   required="0"
                   options="{'no_open': True}"
-                  attrs="{'invisible': ['|', ('id', '=', False),('stage_id', '=', False)]}"/>
+                  attrs="{'invisible': ['|', ('id', '=', False),('stage_id', '=', False)]}"/>-->
                 </group>
               </page>
               <page string="Internal notes">
