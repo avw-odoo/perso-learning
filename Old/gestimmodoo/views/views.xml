@@ -1,0 +1,128 @@
+<openerp>
+  <data>
+    <!-- Tree view definition. Never forget to start record id by the module name. -->
+    <record model="ir.ui.view" id="gestimmodoo.list">
+      <field name="name">List of properties</field>
+      <field name="model">gestimmodoo.gestimmodoo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="display_name"/>
+          <field name="zip"/>
+          <field name="city"/>
+          <field name="property_kind"/>
+          <field name="account_manager"/>
+        </tree>
+      </field>
+    </record>
+    <!-- Form view definition -->
+    <record model="ir.ui.view" id="gestimmodoo.form">
+      <field name="name">gestimmodoo form</field>
+      <field name="model">gestimmodoo.gestimmodoo</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="name" required="1" placeholder="Property summary" default_focus="1"/>
+              </h1>
+            </div>
+            <group>
+              <group string="Localisation">
+                  <label for="street" string="Address"/>
+                  <div class="o_address_format">
+                      <field name="street" placeholder="Street..." class="o_address_street"/>
+                      <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                      <field name="city" placeholder="City" class="o_address_city"/>
+                      <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                      <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                  </div>
+              </group>
+              <group string="Property informations" col="4">
+                  <field name="property_kind"/>
+                  <field name="account_manager"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Property composition details">
+                <field name="composition_ids">
+                  <tree string="Room composition" editable="top">
+                    <field name="room_type"/>
+                    <field name="name"/>
+                    <field name="surface" sum=""/>
+                  </tree>
+                </field>
+                <group string="Internal note">
+                  <field name="comment" string="Internal note" colspan="4"/>
+                </group>
+              </page>
+              <page string="About">
+                This is an example of notebooks
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+    <!-- Search view definition used in tree views (list views) -->
+    <record model="ir.ui.view" id="gestimmodoo.search">
+      <field name="name">gestimmodoo search</field>
+      <field name="model">gestimmodoo.gestimmodoo</field>
+      <field name="arch" type="xml">
+        <search string="Search properties">
+          <field name="name"/>
+          <field name="account_manager"/>
+          <field name="comment"/>
+          <filter help="My properties" domain="[('account_manager','=',uid)]"/>
+          <group expand="0" string="Group By">
+            <filter string="Account manager" domain="" context="{'group_by':'account_manager'}"/>
+            <filter string="Property kind" domain="" context="{'group_by':'property_kind'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+    <!-- actions opening views properties -->
+    <record model="ir.actions.act_window" id="gestimmodoo.action_window">
+      <field name="name">Properties</field>
+      <field name="res_model">gestimmodoo.gestimmodoo</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to create a new property.
+        </p>
+      </field>
+    </record>
+    <!-- action opening views property compositions  -->
+    <record model="ir.actions.act_window" id="gestimmodoo.action_window_composition">
+      <field name="name">Compositions</field>
+      <field name="res_model">composition.composition</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to create a new composition.
+        </p>
+      </field>
+    </record>
+    <!-- menu items -->
+    <!-- Gestimmodoo root menu. -->
+    <menuitem
+      name="Properties"
+      id="gestimmodoo.menu_root"
+      action="gestimmodoo.action_window"
+      web_icon="gestimmodoo,static/description/icon.png"/>
+    <!-- Composition menu -->
+    <menuitem
+      id="gestimmodoo.composition_menu_root"
+      name="Properties"
+      parent="base.menu_custom"
+      sequence="100"/>
+    <menuitem
+      action="gestimmodoo.action_window_composition"
+      id="gestimmodoo.composition_menu"
+      name="Compositions"
+      parent="gestimmodoo.composition_menu_root"/>  
+  </data>
+</openerp>

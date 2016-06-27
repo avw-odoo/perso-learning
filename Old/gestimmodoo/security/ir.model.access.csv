@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gestimmodoo_gestimmodoo,gestimmodoo.access,model_gestimmodoo_gestimmodoo,,1,1,1,1
+access2_gestimmodoo_gestimmodoo,composition.access,model_composition_composition,,1,1,1,1

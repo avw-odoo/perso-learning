@@ -1,0 +1,39 @@
+<openerp>
+    <data>
+        <record id="property1" model="gestimmodoo.gestimmodoo">
+            <field name="name">Charmante villa à Gesves</field>
+            <field name="property_kind">villa</field>
+            <field name="street">997, Rue du pré d'Amite</field>
+            <field name="zip">5340</field>
+            <field name="city">Gesves</field>
+            <field name="country_id" ref="base.be" />
+            <field name="comment"> maison de caractère (pierres du pays), saine avec des matériaux de qualité située sur les hauteurs de ce beau village. </field>
+        </record>
+        <record id="property2" model="gestimmodoo.gestimmodoo">
+            <field name="name">Appartement à Namur</field>
+            <field name="property_kind">apartment</field>
+            <field name="street">89, Boulevard Cauchy</field>
+            <field name="zip">5000</field>
+            <field name="city">Namur</field>
+            <field name="country_id" ref="base.be" />
+        </record>
+         <record id="property1_compo1" model="composition.composition">
+            <field name="name">Living</field>
+            <field name="room_type">other</field>
+            <field name="surface">35</field>
+            <field name="composition_id" ref="gestimmodoo.property1" />
+        </record>
+        <record id="property1_compo2" model="composition.composition">
+            <field name="name">Kitchen (usa style)</field>
+            <field name="room_type">kitchen</field>
+            <field name="surface">27</field>
+            <field name="composition_id" ref="gestimmodoo.property1" />
+        </record>
+        <record id="property1_compo3" model="composition.composition">
+            <field name="name">Dining room</field>
+            <field name="room_type">miam</field>
+            <field name="surface">22</field>
+            <field name="composition_id" ref="gestimmodoo.property1" />
+        </record>
+    </data>
+</openerp>

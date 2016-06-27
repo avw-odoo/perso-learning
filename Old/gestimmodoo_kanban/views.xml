@@ -1,0 +1,102 @@
+<openerp>
+  <data>
+  <!-- Add Kanban view mode to the menu Action: -->
+    <record model="ir.actions.act_window" id="gestimmodoo.action_window">
+      <!--<field name="name">Properties</field>
+      <field name="res_model">gestimmodoo.gestimmodoo</field>-->
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <!-- Add Kanban view -->
+    <record model="ir.ui.view" id="gestimmodoo_kanban_view">
+            <field name="name">gestimmodoo.kanban</field>
+            <field name="model">gestimmodoo.gestimmodoo</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="color"/>
+                    <field name="display_name"/>
+                    <field name="title"/>
+                    <field name="email"/>
+                    <field name="parent_id"/>
+                    <field name="is_company"/>
+                    <field name="function"/>
+                    <field name="phone"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="mobile"/>
+                    <field name="state_id"/>
+                    <field name="category_id"/>
+                    <field name="image"/>
+                    <field name="type"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                <div class="o_kanban_image">
+                                    <t t-if="record.image.raw_value">
+                                        <img t-att-src="kanban_image('gestimmodoo.gestimmodoo', 'image_small', record.id.value)"/>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="oe_partner_heading"><field name="display_name"/></strong>
+                                    <ul>
+                                        <li t-if="record.city.raw_value and !record.country_id.raw_value">
+                                          <field name="city"/>
+                                        </li>
+                                        <li t-if="!record.city.raw_value and record.country_id.raw_value">
+                                          <field name="country_id"/>
+                                        </li>
+                                        <li t-if="record.city.raw_value and record.country_id.raw_value">
+                                          <field name="city"/>, <field name="country_id"/>
+                                        </li>
+                                    </ul>
+                                    <field name="priority" widget="priority"/>
+                                    <div class="oe_kanban_partner_links"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+    <!--
+    <record id="Gestimmodoo Properties Kanban" model="ir.ui.view">
+      <field name="name">Gestimmodoo properties Kanban</field>
+      <field name="model">gestimmodoo.gestimmodoo</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="name"/>
+          <field name="category_id"/>
+          <field name="account_manager"/>
+          <field name="date"/>
+          <field name="kanban_state"/>
+          <field name="priority"/>
+            <templates>
+              <t t-name="kanban-box">
+                <div>
+                  <img t-att-src="kanban_image('gestimmodoo.gestimmodoo', 'image_medium', record.id.value)" class="oe_kanban_image"/>
+                    <div class="oe_kanban_details">
+                      <h4>
+                        <a type="open">
+                          <field name="name" />
+                        </a>
+                      </h4>
+                      <ul>
+                        <li><field name="account_manager"/></li>
+                        <li><field name="date"/></li>
+                      </ul>
+                       <field name="priority" widget="priority"/>
+                    </div>
+                </div>
+              </t>
+            </templates>
+        </kanban>
+      </field>
+    </record>-->
+
+  </data>
+</openerp>
