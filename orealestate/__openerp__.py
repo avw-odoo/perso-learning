@@ -16,6 +16,7 @@ and Odoo capacities.
     """,
 
     'author': "Alain vdw",
+    'license': 'LGPL-3',
     'website': "/",
     'category': 'Real Estate',
 
