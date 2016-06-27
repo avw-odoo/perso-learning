@@ -1,0 +1,522 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* orealestate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-14 00:21+0000\n"
+"PO-Revision-Date: 2016-06-14 03:12+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_account_manager
+#: model:ir.ui.view,arch_db:orealestate.search
+msgid "Account manager"
+msgstr "Gestionnaire"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_needaction
+msgid "Action Needed"
+msgstr "A besoin d'une action"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Address"
+msgstr "Adresse"
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_6
+msgid "Apartments"
+msgstr "Appartements"
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_11
+msgid "Apartments promotions"
+msgstr "Immeubles de rapport"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_area_name
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_area_id
+msgid "Area"
+msgstr "Espaces"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_name
+msgid "Area description"
+msgstr "Description"
+
+#. module: orealestate
+#: sql_constraint:orealestate.area:0
+msgid "Area name must be unique!"
+msgstr "Le nom de la zone doit être unique !"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_surface
+msgid "Area size (m2)"
+msgstr "Superficie en m2"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_6
+msgid "Bathroom"
+msgstr "Salle de bain"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_1
+msgid "Bedroom"
+msgstr "Chambre"
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_7
+msgid "Building land"
+msgstr "Terrain à bâtir"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_city
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "City"
+msgstr "Ville"
+
+#. module: orealestate
+#: model:ir.actions.act_window,help:orealestate.action_window_composition
+msgid "Click to create a new composition."
+msgstr "Click to create a new composition."
+
+#. module: orealestate
+#: model:ir.actions.act_window,help:orealestate.action_window_property
+msgid "Click to create a new property kind."
+msgstr "Click to create a new property kind."
+
+#. module: orealestate
+#: model:ir.actions.act_window,help:orealestate.action_window
+msgid "Click to create a new property."
+msgstr "Click to create a new property."
+
+#. module: orealestate
+#: model:ir.actions.act_window,help:orealestate.action_window_room
+msgid "Click to create a new room."
+msgstr "Click to create a new room."
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_composition_id
+msgid "Composition id"
+msgstr "Composition id"
+
+#. module: orealestate
+#: model:ir.actions.act_window,name:orealestate.action_window_composition
+#: model:ir.ui.menu,name:orealestate.menu_composition
+msgid "Compositions"
+msgstr "Compositions de bien"
+
+#. module: orealestate
+#: model:ir.ui.menu,name:orealestate.menu_configuration_root
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_country_id
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Country"
+msgstr "Pays"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_area_create_uid
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_create_uid
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_property_create_uid
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_area_create_date
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_create_date
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_property_create_date
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: orealestate
+#: model:ir.model.fields,help:orealestate.field_orealestate_realestate_message_last_post
+msgid "Date of the last message posted on the record."
+msgstr "Date du dernier message publié sur cet enregistrement"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_7
+msgid "Dining room"
+msgstr "Salle à manger"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_area_display_name
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_display_name
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_property_display_name
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Abonnés (Canaux)"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_8
+msgid "Garage"
+msgstr "Garage"
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_8
+msgid "Garages"
+msgstr "Garages"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.search
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_3
+msgid "Hall"
+msgstr "Hall"
+
+#. module: orealestate
+#: selection:orealestate.realestate,priority:0
+msgid "High"
+msgstr "High"
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_1
+msgid "Houses"
+msgstr "Maisons"
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_10
+msgid "Houses promotions"
+msgstr "Maisons de rapport"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_area_id
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_id
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_property_id
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_id
+msgid "ID"
+msgstr "ID"
+
+#. module: orealestate
+#: model:ir.model.fields,help:orealestate.field_orealestate_realestate_message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#. module: orealestate
+#: model:ir.model.fields,help:orealestate.field_orealestate_realestate_message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "si elle est cochée, de nouveaux messages requièrent votre attention."
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_3
+msgid "Industries"
+msgstr "Entrepôts"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Informations"
+msgstr "Informations 2"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_internal_note
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Internal note"
+msgstr "Note interne"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Internal notes"
+msgstr "Note interne"
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_4
+msgid "Investment property"
+msgstr "Biens d'investissement"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_is_follower
+msgid "Is Follower"
+msgstr "Est un abonné"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Journey"
+msgstr "Itinéraire"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_2
+msgid "Kitchen"
+msgstr "Cuisine"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_10
+msgid "Land area"
+msgstr "Superficie terrain"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_last_post
+msgid "Last Message Date"
+msgstr "Date du dernier message"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_area___last_update
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition___last_update
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_property___last_update
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_area_write_uid
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_write_uid
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_property_write_uid
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_write_uid
+msgid "Last Updated by"
+msgstr "Mis à jour par"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_area_write_date
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_composition_write_date
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_property_write_date
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_write_date
+msgid "Last Updated on"
+msgstr "Mis à jour le"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_12
+msgid "Living area"
+msgstr "Superficie habitable"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_5
+msgid "Living room"
+msgstr "Living"
+
+#. module: orealestate
+#: selection:orealestate.realestate,priority:0
+msgid "Low"
+msgstr "Low"
+
+#. module: orealestate
+#: model:res.groups,name:orealestate.group_orealestate_manager
+msgid "Manager"
+msgstr "Gestionnaire"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Map"
+msgstr "Google maps"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.search
+msgid "My properties"
+msgstr "Mes biens"
+
+#. module: orealestate
+#: selection:orealestate.realestate,priority:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'Actions"
+
+#. module: orealestate
+#: model:ir.model.fields,help:orealestate.field_orealestate_realestate_message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de messages demandant une action"
+
+#. module: orealestate
+#: model:ir.model.fields,help:orealestate.field_orealestate_realestate_message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de messages non lus"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_4
+msgid "Office room"
+msgstr "Bureau"
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_2
+msgid "Offices"
+msgstr "Bureaux"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_11
+#: model:orealestate.property,name:orealestate.property_kind_9
+msgid "Other"
+msgstr "Autres"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_priority
+msgid "Priority"
+msgstr "Priorité"
+
+#. module: orealestate
+#: model:ir.actions.act_window,name:orealestate.action_window
+#: model:ir.ui.menu,name:orealestate.menu_property_view
+msgid "Properties"
+msgstr "Biens"
+
+#. module: orealestate
+#: model:ir.ui.menu,name:orealestate.menu_property
+msgid "Properties kind"
+msgstr "Types de bien"
+
+#. module: orealestate
+#: model:ir.model,name:orealestate.model_orealestate_realestate
+msgid "Property"
+msgstr "Bien"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Property informations"
+msgstr "Informations"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_property_id
+#: model:ir.ui.view,arch_db:orealestate.search
+msgid "Property kind"
+msgstr "Type du bien"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_name
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Property summary"
+msgstr "Référence du bien"
+
+#. module: orealestate
+#: sql_constraint:orealestate.realestate:0
+msgid "Property summary must be unique!"
+msgstr "Property summary must be unique!"
+
+#. module: orealestate
+#: model:ir.ui.menu,name:orealestate.menu_property_root
+#: model:ir.ui.menu,name:orealestate.menu_root
+msgid "Real estate"
+msgstr "Gestion Immo"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_composition_ids
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Room composition"
+msgstr "Composition du bien"
+
+#. module: orealestate
+#: model:ir.actions.act_window,name:orealestate.action_window_room
+#: model:ir.model,name:orealestate.model_orealestate_composition
+msgid "Room description"
+msgstr "Description"
+
+#. module: orealestate
+#: model:ir.ui.menu,name:orealestate.menu_room
+msgid "Rooms"
+msgstr "Espaces"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.search
+msgid "Search properties"
+msgstr "Rechercher biens"
+
+#. module: orealestate
+#: model:orealestate.property,name:orealestate.property_kind_5
+msgid "Shops"
+msgstr "Magasins"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_street
+msgid "Street"
+msgstr "Rue"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Street 2..."
+msgstr "Rue 2..."
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "Street..."
+msgstr "Rue..."
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_street2
+msgid "Street2"
+msgstr "Rue 2"
+
+#. module: orealestate
+#: model:orealestate.area,name:orealestate.property_room_9
+msgid "Terrace"
+msgstr "Terrasse"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_unread
+msgid "Unread Messages"
+msgstr "Messages non lus"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Compteur de messages non lus"
+
+#. module: orealestate
+#: model:res.groups,name:orealestate.group_orealestate_user
+msgid "User"
+msgstr "User"
+
+#. module: orealestate
+#: model:ir.ui.view,arch_db:orealestate.form
+msgid "ZIP"
+msgstr "Code postal"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_realestate_zip
+msgid "Zip"
+msgstr "Code postal"
+
+#. module: orealestate
+#: model:ir.model,name:orealestate.model_orealestate_area
+msgid "orealestate.area"
+msgstr "orealestate.area"
+
+#. module: orealestate
+#: model:ir.model,name:orealestate.model_orealestate_property
+msgid "orealestate.property"
+msgstr "orealestate.property"
+
+#. module: orealestate
+#: model:ir.actions.act_window,name:orealestate.action_window_property
+msgid "properties kind"
+msgstr "Types de bien"
+
+#. module: orealestate
+#: model:ir.model.fields,field_description:orealestate.field_orealestate_property_name
+msgid "property kind"
+msgstr "Type de bien"

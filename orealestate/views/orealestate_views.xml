@@ -1,0 +1,430 @@
+<odoo>
+  <data>
+
+    <!-- Real estate Tree view definition. Never forget to start record_id by the module name. -->
+    <record model="ir.ui.view" id="orealestate.list">
+      <field name="name">List of properties</field>
+      <field name="model">orealestate.realestate</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="realestate_id"/>
+          <field name="user_id"/>
+          <field name="stage_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Stages tree view -->
+    <!--<record model="ir.ui.view" id="orealestate_realestate_stage_list">
+      <field name="name">Stages</field>
+      <field name="model">orealestate.realestate.stage</field>
+      <field name="arch" type="xml">
+        <tree string="Business stages">
+          <field name="sequence" widget="handle"/>
+          <field name="name"/>
+          <field name="fold"/>
+        </tree>
+      </field>
+    </record>-->
+
+    <!-- Areas tree view -->
+    <record model="ir.ui.view" id="orealestate_realestate_area_list">
+      <field name="name">Areas</field>
+      <field name="model">orealestate.area</field>
+      <field name="arch" type="xml">
+        <tree string="Property areas">
+          <field name="name"/>
+          <field name="specific"/>
+        </tree>
+      </field>
+    </record>
+
+     <!-- composition tree view -->
+    <record model="ir.ui.view" id="orealestate_realestate_composition_list">
+      <field name="name">Property composition</field>
+      <field name="model">orealestate.composition</field>
+      <field name="arch" type="xml">
+        <tree string="property composition">
+          <field name="name"/>
+          <field name="surface"/>
+          <field name="composition_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Real estate Search view definition used in tree views (list views) -->
+    <record model="ir.ui.view" id="orealestate.search">
+      <field name="name">Real Estate search</field>
+      <field name="model">orealestate.realestate</field>
+      <field name="arch" type="xml">
+        <search string="Search properties">
+          <field name="name"/>
+          <field name="mandate_stage"/>
+          <field name="tag_ids"/>
+          <field name="user_id"/>
+          <field name="internal_note"/>
+          <filter
+            name="current_properties"
+            help="My current properties"
+            domain="['&amp;', ('stage_id.fold', '=', False), ('user_id', '=', uid)]"/>
+          <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
+          <group expand="0" string="Group By">
+            <filter string="Account manager" domain="" context="{'group_by':'user_id'}"/>
+            <filter string="Property kind" domain="" context="{'group_by':'realestate_id'}"/>
+            <filter string="Stage" domain="" context="{'group_by':'stage_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <!-- opportunity Form view definition -->
+    <record id="inherits_crm_case_form_view_oppor" model="ir.ui.view">
+      <field name="name">CRM - Leads Form inherit</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+      <field name="arch" type="xml">
+        <field name="user_id" position="replace">
+          <field name="user_id" on_change="0"/>
+        </field>
+        <field name="partner_id" position="before">
+          <field name="mandate"/>
+        </field>
+        <field name="team_id" position="before">
+          <field name="property_id"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- opportunity Search view -->
+    <record id="inherits_view_crm_case_opportunities_filter" model="ir.ui.view">
+      <field name="name">CRM - Leads Search inherit</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+      <field name="arch" type="xml">
+        <field name="team_id" position="before">
+          <field name="property_id"/>
+          <filter string="is a mandate" domain="[('mandate', '=', True)]"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- Real estate Form view definition crm.crm_lead_opportunities-->
+    <record model="ir.ui.view" id="orealestate.form">
+      <field name="name">Real Estate form</field>
+      <field name="model">orealestate.realestate</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+          </header>
+          <sheet>
+            <field name="id" invisible="1"/>
+            <div class="oe_button_box" name="button_box">
+              <button class="oe_stat_button" type="action"
+                name="%(crm.crm_lead_opportunities)d"
+                icon="fa-child"
+                context="{'search_default_property_id': active_id}"
+                string="Potential Acquires"/>
+            </div>
+              <group>
+                <div class="oe_title">
+                  <h1>
+                    <field name="name" required="1" placeholder="Property summary" default_focus="1"/>
+                  </h1>
+                </div>
+              </group>
+            <notebook>
+              <page string="Property informations">
+                <group>
+                  <group string="Address">
+                    <div class="o_address_format">
+                      <field name="street" placeholder="Street..." class="o_address_street"/>
+                      <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                      <field name="city" placeholder="City" class="o_address_city"/>
+                      <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                      <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                      <button name="open_map" string="Map" type="object" icon="fa-map-o"/>
+                      <button name="open_journey" string="Journey" type="object" icon="fa-map-signs"/>
+                    </div>
+                  </group>
+                  <group string="Informations">
+                    <field name="realestate_id" widget="selection"/>
+                    <field name="tag_ids" widget="many2many_tags"/>
+                    <field name="user_id" string="Account manager"/>
+                    <field name="team_id" invisible="True"/>
+                  </group>
+                </group>
+                <field name="composition_ids" nolabel="1">
+                  <tree string="Room composition" editable="down">
+                    <field name="area_id" widget="selection"/>
+                    <field name="name"/>
+                    <field name="surface"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Mandate &amp; financials informations">
+              <group>
+                <field
+                  name="opportunity_id"
+                  string="Manage your mandate"
+                  readonly="1"
+                  required="0"
+                  attrs="{'invisible': [('id', '=', False)]}"/>
+                <field 
+                  name="mandate_stage"
+                  string="Current stage"
+                  readonly="1"
+                  required="0"
+                  options="{'no_open': True}"
+                  attrs="{'invisible': ['|', ('id', '=', False),('mandate_stage', '=', False)]}"/>
+                </group>
+              </page>
+              <page string="Internal notes">
+                <field name="internal_note" string="Internal note"/>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" />
+            <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <!-- Real estate Kanban view definition -->
+    <record model="ir.ui.view" id="orealestate_kanban_view">
+            <field name="name">orealestate.kanban</field>
+            <field name="model">orealestate.realestate</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban o_kanban_small_column" quick_create="false">
+                    <field name="name"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="realestate_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="oe_kanban_details">
+                                    <strong class="oe_partner_heading"><field name="name"/></strong>
+                                    <ul>
+                                        <li t-if="record.street.raw_value">
+                                          <field name="street"/>
+                                        </li>
+                                        <li t-if="record.street2.raw_value">
+                                          <field name="street2"/>
+                                        </li>
+                                        <li t-if="record.city.raw_value and !record.country_id.raw_value">
+                                          <field name="city"/>
+                                        </li>
+                                        <li t-if="!record.city.raw_value and record.country_id.raw_value">
+                                          <field name="country_id"/>
+                                        </li>
+                                        <li t-if="record.city.raw_value and record.country_id.raw_value">
+                                          <field name="city"/>, <field name="country_id"/>
+                                        </li>
+                                    </ul><br />
+                                    <div class="oe_kanban_bottom_left">
+                                      <field name="priority" widget="priority"/>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right oe_kanban_text_red">
+                                      <field name="realestate_id"/>
+                                    </div>
+                                    <div class="oe_kanban_partner_links"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    <!-- CRM Lead Kanban View  -->
+        <record model="ir.ui.view" id="orealestate_kanban_view_opportunities">
+            <field name="name">Real Estate - Properties Kanban</field>
+            <field name="model">orealestate.realestate</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="stage_id" options='{"group_by_tooltip": {"requirements": "Description", "legend_priority": "Use of stars"}}'/>
+                    <field name="color"/>
+                    <field name="priority"/>
+                    <field name="planned_revenue"/>
+                    <field name="user_email"/>
+                    <field name="user_id"/>
+                    <field name="partner_address_email"/>
+                    <field name="message_needaction_counter"/>
+                    <field name="tag_ids"/>
+                    <field name="partner_id"/>
+                    <field name="active"/>
+                    <field name="company_currency"/>
+                    <templates>
+                        <field name="date_deadline"/>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click">
+                                <div class="o_dropdown_kanban dropdown">
+
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                        <span class="fa fa-bars fa-lg"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <t t-if="widget.editable"><li><a type="edit">Edit</a></li></t>
+                                        <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div>
+                                        <field name="tag_ids"/>
+                                    </div>
+                                    <div>
+                                        <strong><field name="name"/></strong>
+                                    </div>
+                                    <div class="text-muted">
+                                        <t t-if="record.planned_revenue.raw_value"><field name="planned_revenue" widget="monetary" options="{'currency_field': 'company_currency'}"/></t> <span t-if="record.partner_id.value"> - <t t-esc="record.partner_id.value"/></span>
+                                    </div>
+                                    <div class="text-muted">
+                                        <t t-if="record.date_action.raw_value and record.date_action.raw_value lt (new Date())" t-set="red">oe_kanban_text_red</t>
+                                        <span t-attf-class="#{red || ''}">
+                                            <field name="date_action"/>
+                                            <t t-if="record.date_action.raw_value"> : </t>
+                                            <field name="next_activity_id"/>
+                                        </span>
+                                    </div>
+                                    <div class="o_kanban_footer">
+                                        <field name="priority" widget="priority" groups="base.group_user"/>
+                                        <t t-if="record.message_needaction_counter.raw_value">
+                                            <span class='oe_kanban_mail_new' title='Unread Messages'><i class='fa fa-comments'/><t t-raw="record.message_needaction_counter.raw_value"/></span>
+                                        </t>
+                                        <img t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)" t-att-title="record.user_id.value" width="24" height="24" class="oe_kanban_avatar pull-right"/>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    
+    <!-- actions opening views on properties, tag & stages-->
+    <record model="ir.actions.act_window" id="orealestate.action_window">
+      <field name="name">Properties</field>
+      <field name="res_model">orealestate.realestate</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_id" ref="orealestate_kanban_view_opportunities"/>
+      <field name="context">{"search_default_current_properties":1}</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to create a new property.
+        </p>
+      </field>
+    </record>
+
+    <!--<act_window id="action_realestate_stage"
+           name="property Stages"
+           res_model="orealestate.realestate.stage"
+           view_mode="tree,form" />-->
+
+    <act_window id="action_realestate_composition_more"
+           name="property composition"
+           res_model="orealestate.composition"
+           src_model="orealestate.realestate"
+           domain="[('composition_id','=',active_id)]"
+           multi="False"/>
+
+
+    <!-- action opening views property compositions  -->
+    <record model="ir.actions.act_window" id="orealestate.action_window_composition">
+      <field name="name">Compositions</field>
+      <field name="res_model">orealestate.composition</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          That's a technical view. You need to create a property and it's composition.
+        </p>
+      </field>
+    </record>
+
+    <!-- action opening views property rooms  -->
+    <record model="ir.actions.act_window" id="orealestate.action_window_room">
+      <field name="name">Properties Areas</field>
+      <field name="res_model">orealestate.area</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to create a new area.
+        </p>
+      </field>
+    </record>
+
+    <!-- action opening views property kind  -->
+    <record model="ir.actions.act_window" id="orealestate.action_window_property">
+      <field name="name">properties kind</field>
+      <field name="res_model">orealestate.property</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to create a new property kind.
+        </p>
+      </field>
+    </record>
+
+    <!-- menu items -->
+    <!-- Gestimmodoo root menu. -->
+    <menuitem
+      name="Real estate"
+      id="orealestate.menu_root"
+      action="orealestate.action_window"
+      sequence="5"
+      web_icon="orealestate,static/description/icon.png"/>
+
+    <!-- properties menu -->
+    <menuitem
+      id="orealestate.menu_property_root"
+      name="Real estate"
+      parent="orealestate.menu_root"
+      sequence="1"/>
+    <menuitem
+      action="orealestate.action_window"
+      id="orealestate.menu_property_view"
+      name="Properties"
+      parent="orealestate.menu_property_root"
+      sequence="2"/>
+    
+
+    <!-- configuration menus -->
+    <menuitem
+      id="orealestate.menu_configuration_root"
+      name="Configuration"
+      parent="orealestate.menu_root"
+      sequence="100"/>
+    <menuitem
+      action="orealestate.action_window_composition"
+      id="orealestate.menu_composition"
+      name="Properties composition"
+      parent="orealestate.menu_configuration_root"
+      sequence="4"/>
+    <menuitem
+      action="orealestate.action_window_room"
+      id="orealestate.menu_room"
+      name="Property areas"
+      parent="orealestate.menu_configuration_root"
+      sequence="2"/>
+    <menuitem
+      action="orealestate.action_window_property"
+      id="orealestate.menu_property"
+      name="Properties kind"
+      parent="orealestate.menu_configuration_root"
+      sequence="1"/>
+    <!--<menuitem
+      action="action_realestate_stage"
+      id="orealestate.menu_property_stage"
+      name="Property business Stages"
+      parent="orealestate.menu_configuration_root"
+      sequence="3"/>-->
+
+  </data>
+
+</odoo>
