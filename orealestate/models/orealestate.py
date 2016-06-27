@@ -4,13 +4,14 @@ from openerp import api, fields, models
 
 
 
+
 class Lead(models.Model):
     _inherit = 'crm.lead'
 
 
     property_id = fields.Many2one('orealestate.realestate', string='Property')
     mandate = fields.Boolean('Is a mandate', readonly=True)
-    team_id = fields.Many2one('crm.team', 'Sales Team', default=lambda self: self.env.ref('orealestate.orealestate_mandate_team'))
+
 
 
 
@@ -79,48 +80,32 @@ class realestate(models.Model):
 
     @api.model
     def _default_stage_id(self):
-        return [self.env.ref('orealestate.orealestate_stage_lead1').id]
+        """To find the default stage for the creation of a property."""
+        return self.env.ref('orealestate.orealestate_stage_lead1').id
+
+
+    @api.multi
+    def _compute_opportunity_count(self):
+        for record in self:
+            record.opportunity_count = len(record.opportunity_ids)
 
 
     id = fields.Integer('ID')#used to show stage & opportunity id in the view without required stop
     opportunity_id = fields.Many2one('crm.lead', 'Related mandate', readonly=True, required=True, ondelete="cascade")
     internal_note = fields.Text(string='Internal note')
     opportunity_ids = fields.One2many('crm.lead', 'property_id', string='Opportunities', readonly=True)
+    opportunity_count = fields.Integer('opportunity count', compute = '_compute_opportunity_count')
     composition_ids = fields.One2many('orealestate.composition', 'composition_id', string='Property composition')
     realestate_id = fields.Many2one('orealestate.property', string='Property kind', required=True)
-    #street = fields.Char()
-    #street2 = fields.Char()
-    #zip = fields.Char(size=24)
-    #city = fields.Char()
-    #country_id = fields.Many2one('res.country', 'Country', ondelete='restrict')
     priority = fields.Selection([('0', 'Low'), ('1', 'Normal'), ('2', 'High')],'Priority', default='0')
-    #stage_id = fields.Many2one('orealestate.realestate.stage', 'Stage', track_visibility='onchange', default=lambda self: self.env.ref('orealestate.property_stage_1'))
-    #stage_fold = fields.Boolean(
-        #related = 'stage_id.fold',
-        #string = 'Stage folded ?')
-    mandate_stage = fields.Many2one(
-        related = 'opportunity_id.stage_id',
-        string = 'Mandate stage')
-    #tag_ids = fields.Many2many(
-       #'orealestate.realestate.tag',      # related model
-       #'orealestate_realestate_tag_rel',  # relation table name
-       #'realestate_id',            # field for "this" record
-       #'tag_id',             # field for "other" record
-       #string='Tags')
-
-
+    
+    
     _defaults = {
         'mandate': True,
         'stage_id': _default_stage_id,
-        #'team_id': _default_team_id,
-        #'team_id': lambda self, cr, uid, *args, **kwargs: [self.pool.get('ir.model.data').xmlid_to_res_id(cr, uid, 'orealestate.orealestate_mandate_team')],
+        'team_id': api.model(lambda self: self.env.ref('orealestate.orealestate_mandate_team').id),        
     }
 
-
-    #@api.one
-    #@api.depends('stage_id.fold')
-    #def _compute_stage_fold(self):
-        #self.stage_fold = self.stage_id.fold
 
 
 
@@ -162,25 +147,3 @@ class property(models.Model):
     _name = "orealestate.property"
 
     name = fields.Char(string='property kind', required=True, translate=True)
-
-
-
-"""
-class stage(models.Model):
-
-    _name = 'orealestate.realestate.stage'
-    _order = 'sequence,name'
-    
-    name = fields.Char(string='Name', translate=True)
-    sequence = fields.Integer('Sequence')
-    fold = fields.Boolean('Folded?')
-
-
-
-
-class tag(models.Model):
-       _name = 'orealestate.realestate.tag'
-       name = fields.Char(string='Name', translate=True)
-       realestate_ids = fields.Many2many(
-           'orealestate.realestate',    # related model
-           string='Property')"""
