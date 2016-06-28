@@ -22,7 +22,6 @@
       <field name="arch" type="xml">
         <tree string="Property areas">
           <field name="name"/>
-          <field name="specific"/>
         </tree>
       </field>
     </record>
@@ -111,18 +110,33 @@
           <sheet>
             <field name="id" invisible="1"/>
             <div class="oe_button_box" name="button_box">
-              <button class="oe_stat_button" type="action"
+              <button class="oe_stat_button o_res_partner_tip_opp" type="action"
                 name="%(crm.crm_lead_opportunities)d"
                 icon="fa-child"
                 context="{'search_default_property_id': active_id}">
-                  <field name="opportunity_count" widget="statinfo" string="Potential Acquires"/>
+                  <field name="opportunity_count" widget="statinfo" string="Acquires"/>
               </button>
             </div>
               <group>
                 <div class="oe_title">
-                  <h1>
-                    <field name="name" required="1" placeholder="Property summary" default_focus="1"/>
-                  </h1>
+                  <label for="name" string="Property" class="oe_edit_only"/>
+                  <h1><field name="name" placeholder="Property summary"/></h1>
+                  <h2 class="o_row">
+                    <div>
+                      <label for="planned_revenue" string="Price" class="oe_edit_only" />
+                      <div class="o_row">
+                        <field name="company_currency" invisible="1"/>
+                        <field name="planned_revenue" widget='monetary' options="{'currency_field': 'company_currency'}"/>
+                        <span class="oe_grey"> &#160; for the &#160; </span>
+                      </div>
+                    </div>
+                    <div>
+                      <label for="realestate_id" class="oe_edit_only"/>
+                      <div class="o_row">
+                        <field name="realestate_id" widget="selection"/>
+                      </div>
+                    </div>
+                  </h2>
                 </div>
               </group>
             <notebook>
@@ -140,7 +154,16 @@
                     </div>
                   </group>
                   <group string="Informations">
-                    <field name="realestate_id" widget="selection"/>
+                    <label for="living_area" string="Living area"/>
+                    <div class="o_row">
+                      <field name="living_area"/>m&#178;
+                    </div>
+                    <Newline/>
+                    <label for="land_area" string="Land area"/>
+                    <div class="o_row">
+                      <field name="land_area"/>m&#178;
+                    </div>
+                    <newline/>
                     <field name="tag_ids" widget="many2many_tags"/>
                     <field name="user_id" string="Account manager"/>
                     <field name="team_id" invisible="True"/>
@@ -150,7 +173,7 @@
                   <tree string="Room composition" editable="down">
                     <field name="area_id" widget="selection"/>
                     <field name="name"/>
-                    <field name="surface"/>
+                    <field name="surface" sum="Total"/>
                   </tree>
                 </field>
               </page>
@@ -162,13 +185,6 @@
                   readonly="1"
                   required="0"
                   attrs="{'invisible': [('id', '=', False)]}"/>
-                <!--<field 
-                  name="stage_id"
-                  string="Current stage"
-                  readonly="1"
-                  required="0"
-                  options="{'no_open': True}"
-                  attrs="{'invisible': ['|', ('id', '=', False),('stage_id', '=', False)]}"/>-->
                 </group>
               </page>
               <page string="Internal notes">

@@ -98,7 +98,8 @@ class realestate(models.Model):
     composition_ids = fields.One2many('orealestate.composition', 'composition_id', string='Property composition')
     realestate_id = fields.Many2one('orealestate.property', string='Property kind', required=True)
     priority = fields.Selection([('0', 'Low'), ('1', 'Normal'), ('2', 'High')],'Priority', default='0')
-    
+    living_area = fields.Integer('Living area')
+    land_area = fields.Integer('Land area')
     
     _defaults = {
         'mandate': True,
@@ -127,10 +128,9 @@ class area(models.Model):
     """Types of areas"""
 
     _name = 'orealestate.area'
-    _order = 'specific,name'
+    _order = 'name'
 
     name = fields.Char(string='Area', required=True, translate=True)
-    specific = fields.Boolean('Specific area?')
 
     _sql_constraints = [
                ('name_uniq',

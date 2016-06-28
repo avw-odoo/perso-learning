@@ -3,6 +3,9 @@
         <record id="property1" model="orealestate.realestate">
             <field name="name">Charmante villa à Gesves</field>
             <field name="realestate_id" ref="orealestate.property_kind_1" />
+            <field name="planned_revenue">315000</field>
+            <field name="living_area">255</field>
+            <field name="land_area">1225</field>
             <field name="street">Rue du pré d'Amite 44</field>
             <field name="zip">5340</field>
             <field name="city">Gesves</field>
@@ -13,6 +16,8 @@
         <record id="property2" model="orealestate.realestate">
             <field name="name">Appartement Bld Cauchy à Namur</field>
             <field name="realestate_id" ref="orealestate.property_kind_6" />
+            <field name="planned_revenue">205000</field>
+            <field name="living_area">115</field>
             <field name="street">Boulevard Cauchy 3</field>
             <field name="zip">5000</field>
             <field name="city">Namur</field>
@@ -40,7 +45,7 @@
         </record>
         <record id="property2_compo1" model="orealestate.composition">
             <field name="name">Superficie habitable</field>
-            <field name="area_id" ref="orealestate.property_room_12" />
+            <field name="area_id" ref="orealestate.property_room_5" />
             <field name="surface">125</field>
             <field name="composition_id" ref="orealestate.property2" />
         </record>
