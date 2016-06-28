@@ -7,6 +7,7 @@
       <field name="model">orealestate.realestate</field>
       <field name="arch" type="xml">
         <tree>
+          <field name="id"/>
           <field name="name"/>
           <field name="realestate_id"/>
           <field name="user_id"/>
@@ -46,6 +47,7 @@
       <field name="arch" type="xml">
         <search string="Search properties">
           <field name="name"/>
+          <field name="id"/>
           <field name="stage_id"/>
           <field name="tag_ids"/>
           <field name="user_id"/>
@@ -154,6 +156,7 @@
                     </div>
                   </group>
                   <group string="Informations">
+                    <field name="id" string="Reference" readonly="1"/>
                     <label for="living_area" string="Living area"/>
                     <div class="o_row">
                       <field name="living_area"/>m&#178;
@@ -164,6 +167,7 @@
                       <field name="land_area"/>m&#178;
                     </div>
                     <newline/>
+
                     <field name="tag_ids" widget="many2many_tags"/>
                     <field name="user_id" string="Account manager"/>
                     <field name="team_id" invisible="True"/>
