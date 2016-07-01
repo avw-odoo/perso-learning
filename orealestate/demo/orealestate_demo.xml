@@ -9,6 +9,7 @@
             <field name="street">Rue du pré d'Amite 44</field>
             <field name="zip">5340</field>
             <field name="city">Gesves</field>
+            <field name="room_number">3</field>
             <field name="country_id" ref="base.be" />
             <field name="stage_id" ref="orealestate.orealestate_stage_lead1" />
             <field name="internal_note"> maison de caractère (pierres du pays), saine avec des matériaux de qualité située sur les hauteurs de ce beau village. </field>
@@ -21,6 +22,7 @@
             <field name="street">Boulevard Cauchy 3</field>
             <field name="zip">5000</field>
             <field name="city">Namur</field>
+            <field name="room_number">2</field>
             <field name="country_id" ref="base.be" />
             <field name="stage_id" ref="orealestate.orealestate_stage_lead2" />
             <field name="internal_note"> Superbe et spacieux appartement idéalement situé dans le centre de Namur. Bus, train et magasins à 2 minutes à pied! </field>

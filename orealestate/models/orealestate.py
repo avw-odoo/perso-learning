@@ -9,8 +9,9 @@ class Lead(models.Model):
     _inherit = 'crm.lead'
 
 
-    property_id = fields.Many2one('orealestate.realestate', string='Property')
+    property_id = fields.Many2one('orealestate.realestate', string='Property', help='Linked property.')
     mandate = fields.Boolean('Is a mandate', readonly=True)
+    property_account_manager = fields.Many2one(related='property_id.user_id', string='Account manager')
 
 
 
@@ -90,17 +91,21 @@ class realestate(models.Model):
             record.opportunity_count = len(record.opportunity_ids)
 
 
-    id = fields.Integer('ID')#used to show stage & opportunity id in the view without required stop
+    #id = fields.Integer('Id')#used to show stage & opportunity id in the view without required stop
     opportunity_id = fields.Many2one('crm.lead', 'Related mandate', readonly=True, required=True, ondelete="cascade")
     internal_note = fields.Text(string='Internal note')
     opportunity_ids = fields.One2many('crm.lead', 'property_id', string='Opportunities', readonly=True)
     opportunity_count = fields.Integer('opportunity count', compute = '_compute_opportunity_count')
-    composition_ids = fields.One2many('orealestate.composition', 'composition_id', string='Property composition')
-    realestate_id = fields.Many2one('orealestate.property', string='Property kind', required=True)
+    composition_ids = fields.One2many('orealestate.composition', 'composition_id', string='Property composition', help='Describe each room of the property and their total area.')
+    realestate_id = fields.Many2one('orealestate.property', string='Property kind', help='What kind of property is it?', required=True)
     priority = fields.Selection([('0', 'Low'), ('1', 'Normal'), ('2', 'High')],'Priority', default='0')
-    living_area = fields.Integer('Living area')
-    land_area = fields.Integer('Land area')
-    
+    living_area = fields.Integer('Living area', help='What is the total surface area of the property?')
+    land_area = fields.Integer('Land area', help='What is the total area of the land?')
+    room_number = fields.Integer('Number of rooms', help='How many rooms there are in this property?')
+    residence = fields.Char()
+    sign = fields.Boolean('Sign ?')
+    keys = fields.Boolean('Keys ?')
+
     _defaults = {
         'mandate': True,
         'stage_id': _default_stage_id,

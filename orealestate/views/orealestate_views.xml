@@ -78,8 +78,9 @@
         <field name="partner_id" position="before">
           <field name="mandate" attrs="{'invisible': [('mandate', '=', False)]}"/>
         </field>
-        <field name="team_id" position="before">
+        <field name="team_id" position="after">
           <field name="property_id"/>
+          <field name="property_account_manager" attrs="{'invisible': [('property_account_manager', '=', False)]}"/>
         </field>
       </field>
     </record>
@@ -104,25 +105,27 @@
       <field name="arch" type="xml">
         <form>
           <header>
+            <field name="team_id" invisible="True"/>
             <field name="stage_id"
               widget="statusbar"
-              domain="[('team_ids', '=', team_id)]"
+              domain="[('team_id', '=', team_id)]"
               options="{'fold_field': 'fold'}"/>
           </header>
           <sheet>
-            <field name="id" invisible="1"/>
+            <!--<field name="id" invisible="1"/>-->
             <div class="oe_button_box" name="button_box">
               <button class="oe_stat_button o_res_partner_tip_opp" type="action"
                 name="%(crm.crm_lead_opportunities)d"
                 icon="fa-child"
                 context="{'search_default_property_id': active_id}">
-                  <field name="opportunity_count" widget="statinfo" string="Acquires"/>
+                  <field name="opportunity_count" widget="statinfo" string="Contact(s)"/>
               </button>
             </div>
+            <group>
               <group>
                 <div class="oe_title">
-                  <label for="name" string="Property" class="oe_edit_only"/>
-                  <h1><field name="name" placeholder="Property summary"/></h1>
+                  <label for="name" string="Reference" class="oe_edit_only"/>
+                  <h1><field name="name" placeholder="Property summary" help="Property reference."/></h1>
                   <h2 class="o_row">
                     <div>
                       <label for="planned_revenue" string="Price" class="oe_edit_only" />
@@ -139,59 +142,78 @@
                       </div>
                     </div>
                   </h2>
+                  <label for="tag_ids" string="Tags" class="oe_edit_only" />
+                  <field name="tag_ids" widget="many2many_tags" help="Classify and analyse your properties with categories/tags like : prestigious, bad price, reduce price, ... "/>
                 </div>
               </group>
-            <notebook>
-              <page string="Property informations">
+              <group>
                 <group>
-                  <group string="Address">
-                    <div class="o_address_format">
-                      <field name="street" placeholder="Street..." class="o_address_street"/>
-                      <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                      <field name="city" placeholder="City" class="o_address_city"/>
-                      <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                      <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
-                      <button name="open_map" string="Map" type="object" icon="fa-map-o"/>
-                      <button name="open_journey" string="Journey" type="object" icon="fa-map-signs"/>
+                  <field name="id" string="ID" help="is a number automatically assigned by Odoo. You can not change this number." readonly="1"/>
+                  <field name="room_number"/>
+                </group>
+                <group>
+                  <label for="living_area" string="Living area"/>
+                    <div class="row">
+                      <field name="living_area"/>&#160;m&#178;
                     </div>
+                  <label for="land_area" string="Land area"/>
+                    <div class="row">
+                      <field name="land_area"/>&#160;m&#178;
+                    </div>
+                </group>
+              </group>
+            </group>
+            <notebook>
+              <page string="General">
+                <group>
+                  <group>
+                    <group string="Address">
+                      <div class="o_address_format">
+                        <field name="street" placeholder="Street..." class="o_address_street"/>
+                        <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                        <field name="city" placeholder="City" class="o_address_city"/>
+                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                        <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                        <field name="residence" placeholder="Residence" class="o_address_street"/>
+                        <button name="open_map" string="Map" type="object" icon="fa-map-o" class="btn-link"/>
+                        <button name="open_journey" string="Journey" type="object" icon="fa-map-signs" class="btn-link"/>
+                      </div>
+                    </group>
+                    <group string="Memo">
+                      <field name="sign"/>
+                      <field name="keys"/>
+                    </group>
                   </group>
-                  <group string="Informations">
-                    <field name="id" string="Reference" readonly="1"/>
-                    <label for="living_area" string="Living area"/>
-                    <div class="o_row">
-                      <field name="living_area"/>m&#178;
-                    </div>
-                    <Newline/>
-                    <label for="land_area" string="Land area"/>
-                    <div class="o_row">
-                      <field name="land_area"/>m&#178;
-                    </div>
-                    <newline/>
-
-                    <field name="tag_ids" widget="many2many_tags"/>
-                    <field name="user_id" string="Account manager"/>
-                    <field name="team_id" invisible="True"/>
+                  <group string="Property composition" help="Describe each room of the property and their total area.">
+                    <field name="composition_ids" string="Property composition" nolabel="1">
+                      <tree>
+                        <field name="name"/>
+                        <field name="surface" sum="Total"/>
+                      </tree>
+                      <form>
+                        <group string="Area description">
+                          <field name="area_id" string="Area kind" widget="selection"/>
+                          <field name="name" required="1"/>
+                          <field name="surface"/>
+                        </group>
+                      </form>
+                    </field>
                   </group>
                 </group>
-                <field name="composition_ids" nolabel="1">
-                  <tree string="Room composition" editable="down">
-                    <field name="area_id" widget="selection"/>
-                    <field name="name"/>
-                    <field name="surface" sum="Total"/>
-                  </tree>
-                </field>
               </page>
-              <page string="Mandate &amp; financials informations">
+              <page string="financial">
               <group>
                 <field
                   name="opportunity_id"
                   string="Manage your mandate"
                   readonly="1"
                   required="0"
+                  context="{'search_default_team_id': active_id}"
                   attrs="{'invisible': [('id', '=', False)]}"/>
+                <field name="user_id" string="Account manager"/>
                 </group>
               </page>
-              <page string="Internal notes">
+              <page string="Internal">
                 <field name="internal_note" string="Internal note"/>
               </page>
             </notebook>

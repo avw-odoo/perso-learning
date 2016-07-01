@@ -73,28 +73,28 @@
             <field name="probability">10</field>
             <field name="on_change">1</field>
             <field name="sequence">1</field>
-            <field name="type">opportunity</field>
+            <field name="team_id" ref="orealestate_mandate_team"/>
         </record>
         <record model="crm.stage" id="orealestate_stage_lead2">
             <field name="name">Negotiation</field>
             <field name="probability">35</field>
             <field name="on_change">1</field>
             <field name="sequence">2</field>
-            <field name="type">opportunity</field>
+            <field name="team_id" ref="orealestate_mandate_team"/>
         </record>
         <record model="crm.stage" id="orealestate_stage_lead3">
             <field name="name">Preparation</field>
             <field name="probability">80</field>
             <field name="on_change">1</field>
             <field name="sequence">3</field>
-            <field name="type">opportunity</field>
+            <field name="team_id" ref="orealestate_mandate_team"/>
         </record>
         <record model="crm.stage" id="orealestate_stage_lead4">
             <field name="name">Under contract</field>
             <field name="probability">90</field>
             <field name="on_change">1</field>
             <field name="sequence">4</field>
-            <field name="type">opportunity</field>
+            <field name="team_id" ref="orealestate_mandate_team"/>
         </record>
         <record model="crm.stage" id="orealestate_stage_lead5">
             <field name="name">Sold</field>
@@ -102,14 +102,14 @@
             <field name="probability">100</field>
             <field name="on_change">1</field>
             <field name="sequence">70</field>
-            <field name="type">opportunity</field>
+            <field name="team_id" ref="orealestate_mandate_team"/>
         </record>
 
         <!-- Realestate mandate sales team -->
         <record id="orealestate_mandate_team" model="crm.team">
             <field name="use_leads">True</field>
             <field name="name">Mandates</field>
-            <field name="stage_ids" eval="[(4, ref('orealestate_stage_lead1')),(4, ref('orealestate_stage_lead2')),(4, ref('orealestate_stage_lead3')),(4, ref('orealestate_stage_lead4')),(4, ref('orealestate_stage_lead5'))]"></field>
+            <!-- <field name="stage_ids" eval="[(4, ref('orealestate_stage_lead1')),(4, ref('orealestate_stage_lead2')),(4, ref('orealestate_stage_lead3')),(4, ref('orealestate_stage_lead4')),(4, ref('orealestate_stage_lead5'))]"></field> -->
         </record>
 
     </data>

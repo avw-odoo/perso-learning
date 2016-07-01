@@ -1,5 +1,7 @@
+# orealestate : Real Estate Management
+
 ## What I'm doing here ?
-- I'm doing some odoo v9.0 modules for my personal learning purposes (as I'm not a developer...).
+- I'm doing some odoo v9.0 (saas-11) modules for my personal learning purposes (as I'm not a developer...).
 - You’ll certainly not find anything useful here, sorry for that... :-)
 
 ### The first module "orealestate"
