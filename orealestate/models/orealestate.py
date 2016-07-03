@@ -79,19 +79,13 @@ class realestate(models.Model):
         }
 
 
-    @api.model
-    def _default_stage_id(self):
-        """To find the default stage for the creation of a property."""
-        return self.env.ref('orealestate.orealestate_stage_lead1').id
-
-
     @api.multi
     def _compute_opportunity_count(self):
         for record in self:
             record.opportunity_count = len(record.opportunity_ids)
 
 
-    #id = fields.Integer('Id')#used to show stage & opportunity id in the view without required stop
+    id = fields.Integer('ID', readonly=True)
     opportunity_id = fields.Many2one('crm.lead', 'Related mandate', readonly=True, required=True, ondelete="cascade")
     internal_note = fields.Text(string='Internal note')
     opportunity_ids = fields.One2many('crm.lead', 'property_id', string='Opportunities', readonly=True)
@@ -108,7 +102,6 @@ class realestate(models.Model):
 
     _defaults = {
         'mandate': True,
-        'stage_id': _default_stage_id,
         'team_id': api.model(lambda self: self.env.ref('orealestate.orealestate_mandate_team').id),        
     }
 
@@ -118,8 +111,10 @@ class realestate(models.Model):
 class composition(models.Model):
     """Composition is to Specify the rooms of a property."""
 
+
     _description = 'Room description'
     _name = 'orealestate.composition'
+
 
     name = fields.Char(string='Area description', required=True)
     area_id = fields.Many2one('orealestate.area', string='Area', required=True)
@@ -132,10 +127,13 @@ class composition(models.Model):
 class area(models.Model):
     """Types of areas"""
 
+
     _name = 'orealestate.area'
     _order = 'name'
 
+
     name = fields.Char(string='Area', required=True, translate=True)
+
 
     _sql_constraints = [
                ('name_uniq',
@@ -149,6 +147,8 @@ class area(models.Model):
 class property(models.Model):
     """Property kind. The name of this object is not perfect.. """
 
+
     _name = "orealestate.property"
+
 
     name = fields.Char(string='property kind', required=True, translate=True)

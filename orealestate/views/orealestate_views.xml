@@ -208,7 +208,6 @@
                   string="Manage your mandate"
                   readonly="1"
                   required="0"
-                  context="{'search_default_team_id': active_id}"
                   attrs="{'invisible': [('id', '=', False)]}"/>
                 <field name="user_id" string="Account manager"/>
                 </group>
