@@ -4,7 +4,7 @@
     'name': 'Real Estate',
     'version': '0.1',
     'sequence': 1300,
-    'depends': ['base', 'mail', 'crm'],
+    'depends': ['base', 'mail', 'crm', 'report'],
     'summary': 'Property management',
     'description': """
 Real Estate management

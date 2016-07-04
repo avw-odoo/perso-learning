@@ -340,6 +340,31 @@
                 </kanban>
             </field>
         </record>
+
+        <template id="qweb_res_partner_emails">
+          <t t-call="report.html_container">
+            <t t-call="report.external_layout">
+              <div class="page">
+                <h4>Partner's emails</h4>
+                  <div t-foreach="docs" t-as="o" class="row mt4 mb4">
+                    <div class="col-md-6"><t t-esc="o.name" /></div>
+                    <div class="col-md-6">
+                      <t t-if="o.email" t-esc="o.email" />
+                      <t t-if="not o.email">-</t>
+                    </div>
+                  </div>
+              </div>
+            </t>
+          </t>
+        </template>
+
+        <report
+          id="report_res_partner_emails"
+          name="orealestate.qweb_res_partner_emails"
+          model="res.partner"
+          string="Emails"
+          report_type="qweb-pdf" />
+
     
     <!-- actions opening views on properties, tag & stages-->
     <record model="ir.actions.act_window" id="orealestate.action_window">
