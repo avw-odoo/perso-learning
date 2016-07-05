@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record model="web.tip" id="orealestate_tip_1">
+            <field name="title">Open your property in Google Map !</field>
+            <field name="description">Add the complete address of the property, and
+                Click to view it on Google Map. Planify you itinary journey is also possible !
+            </field>
+            <field name="model">orealestate.realestate</field>
+            <field name="mode">form</field>
+            <field name="trigger_selector">#notebook_page_8 > div > table:nth-child(1) > tbody > tr:nth-child(2) > td > div</field>
+            <field name="highlight_selector">#notebook_page_8 > div > table:nth-child(1) > tbody > tr:nth-child(2) > td > div</field>
+            <field name="end_event">mouseup</field>
+            <field name="placement">right</field>
+        </record>
+    </data>
+</odoo>

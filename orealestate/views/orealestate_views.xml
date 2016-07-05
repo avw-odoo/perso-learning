@@ -150,7 +150,7 @@
                     </div>
                     <label for="tag_ids" string="Tags" class="oe_edit_only" />
                     <field name="tag_ids" widget="many2many_tags" help="Classify and analyse your properties with categories/tags like : prestigious, bad price, reduce price, ... "/>
-                    <notebook>
+                    <notebook name="realestate">
                         <page string="General">
                             <group name="row 1">
                                 <group name ="adresse" string="Address">
@@ -161,8 +161,8 @@
                                         <field name="zip" placeholder="ZIP" class="o_address_zip"/>
                                         <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
                                         <field name="residence" placeholder="Residence" class="o_address_street"/>
-                                        <button name="open_map" string="Map" type="object" icon="fa-map-o" class="btn-link"/>
-                                        <button name="open_journey" string="Journey" type="object" icon="fa-map-signs" class="btn-link"/>
+                                        <button name="open_map" string="Map" type="object" icon="fa-map-o" class="btn-link oe_read_only"/>
+                                        <button name="open_journey" string="Journey" type="object" icon="fa-map-signs" class="btn-link oe_read_only"/>
                                     </div>
                                 </group>
                                 <group name="informations" string="Informations">
@@ -229,6 +229,7 @@
     </record>
 
     <!-- Real estate Kanban view definition -->
+    <!--
     <record model="ir.ui.view" id="orealestate_kanban_view">
             <field name="name">orealestate.kanban</field>
             <field name="model">orealestate.realestate</field>
@@ -275,7 +276,7 @@
                     </templates>
                 </kanban>
             </field>
-        </record>
+        </record>-->
 
     <!-- CRM Lead Kanban View  -->
         <record model="ir.ui.view" id="orealestate_kanban_view_opportunities">
@@ -374,7 +375,7 @@
       <field name="name">Properties</field>
       <field name="res_model">orealestate.realestate</field>
       <field name="view_mode">kanban,tree,form</field>
-      <field name="view_id" ref="orealestate_kanban_view_opportunities"/>
+      <field name="view_id"/>
       <field name="context">{"search_default_current_properties":1}</field>
       <field name="help" type="html">
         <p class="oe_view_nocontent_create">
