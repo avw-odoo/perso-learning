@@ -54,9 +54,13 @@
           <field name="user_id"/>
           <field name="internal_note"/>
           <filter
+            name="my_properties"
+            help="My properties"
+            domain="[('user_id', '=', uid)]"/>
+          <filter
             name="current_properties"
-            help="My current properties"
-            domain="['&amp;', ('stage_id.fold', '=', False), ('user_id', '=', uid)]"/>
+            help="Current properties"
+            domain="[('stage_id.fold', '=', False)]"/>
           <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
           <group expand="0" string="Group By">
             <filter string="Account manager" domain="" context="{'group_by':'user_id'}"/>
@@ -73,11 +77,6 @@
       <field name="model">crm.lead</field>
       <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
       <field name="arch" type="xml">
-        <!-- un bug de context dans la version standard force la sales team du user -->
-        <!-- désactive le on_change de la vue standard -->
-        <!--<field name="user_id" position="replace">
-          <field name="user_id" on_change="0"/>
-        </field>-->
         <field name="partner_id" position="before">
           <field name="mandate" attrs="{'invisible': [('mandate', '=', False)]}"/>
         </field>
@@ -176,19 +175,10 @@
                                     <div class="o_row">
                                         <field name="land_area"/>&#160;m&#178;
                                     </div>
-                                    <!--<newline/>-->
                                     <label for="room_number" string="There is"/>
                                     <div class="o_row">
                                         <field name="room_number"/>&#160;rooms
                                     </div>
-                                    <!--<div class="o_row">
-                                        <label for="sign" string="Sign placed"/>
-                                            <field name="sign" colspan="2"/>
-                                    </div>
-                                    <div class="o_row">
-                                        <label for="keys" string="Keys received"/>
-                                            <field name="keys" colspan="2"/>
-                                    </div>-->
                                 </group>
                                 <group string="Memo">
                                       <field name="sign"/>
@@ -229,57 +219,8 @@
         </field>
     </record>
 
-    <!-- Real estate Kanban view definition -->
-    <!--
-    <record model="ir.ui.view" id="orealestate_kanban_view">
-            <field name="name">orealestate.kanban</field>
-            <field name="model">orealestate.realestate</field>
-            <field name="arch" type="xml">
-                <kanban class="o_res_partner_kanban o_kanban_small_column" quick_create="false">
-                    <field name="name"/>
-                    <field name="street"/>
-                    <field name="street2"/>
-                    <field name="city"/>
-                    <field name="country_id"/>
-                    <field name="realestate_id"/>
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click o_res_partner_kanban">
-                                <div class="oe_kanban_details">
-                                    <strong class="oe_partner_heading"><field name="name"/></strong>
-                                    <ul>
-                                        <li t-if="record.street.raw_value">
-                                          <field name="street"/>
-                                        </li>
-                                        <li t-if="record.street2.raw_value">
-                                          <field name="street2"/>
-                                        </li>
-                                        <li t-if="record.city.raw_value and !record.country_id.raw_value">
-                                          <field name="city"/>
-                                        </li>
-                                        <li t-if="!record.city.raw_value and record.country_id.raw_value">
-                                          <field name="country_id"/>
-                                        </li>
-                                        <li t-if="record.city.raw_value and record.country_id.raw_value">
-                                          <field name="city"/>, <field name="country_id"/>
-                                        </li>
-                                    </ul><br />
-                                    <div class="oe_kanban_bottom_left">
-                                      <field name="priority" widget="priority"/>
-                                    </div>
-                                    <div class="oe_kanban_bottom_right oe_kanban_text_red">
-                                      <field name="realestate_id"/>
-                                    </div>
-                                    <div class="oe_kanban_partner_links"/>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>-->
 
-    <!-- CRM Lead Kanban View  -->
+    <!-- CRM Lead Kanban View adapted  -->
         <record model="ir.ui.view" id="orealestate_kanban_view_opportunities">
             <field name="name">Real Estate - Properties Kanban</field>
             <field name="model">orealestate.realestate</field>
@@ -321,6 +262,7 @@
                                     </div>
                                     <div class="text-muted">
                                         <t t-if="record.planned_revenue.raw_value"><field name="planned_revenue" widget="monetary" options="{'currency_field': 'company_currency'}"/></t> <span t-if="record.partner_id.value"> - <t t-esc="record.partner_id.value"/></span>
+                                        [<field name="stage_id"/>]
                                     </div>
                                     <div class="text-muted">
                                         <t t-if="record.date_action.raw_value and record.date_action.raw_value lt (new Date())" t-set="red">oe_kanban_text_red</t>
