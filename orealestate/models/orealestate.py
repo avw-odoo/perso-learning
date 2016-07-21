@@ -100,9 +100,20 @@ class realestate(models.Model):
     sign = fields.Boolean('Sign ?')
     keys = fields.Boolean('Keys ?')
 
+
+    # def _get_default_stage_id(self, cr, uid, context=None):
+    #     if context is None:
+    #         context = {}
+    #     if context.get('force_mandate'):
+    #         context = dict(context)
+    #         context['default_team_id'] = self.pool.get('ir.model.data').xmlid_to_res_id(cr, uid, 'orealestate.orealestate_mandate_team')
+    #     return self.pool.get('crm.lead')._get_default_stage_id(cr, uid, context=context)
+ 
+
     _defaults = {
         'mandate': True,
-        'team_id': api.model(lambda self: self.env.ref('orealestate.orealestate_mandate_team').id),        
+        'team_id': api.model(lambda self: self.env.ref('orealestate.orealestate_mandate_team').id),
+        #'stage_id': lambda s, cr, uid, c: s._get_default_stage_id(cr, uid, c),
     }
 
 
@@ -112,7 +123,7 @@ class composition(models.Model):
     """Composition is to Specify the rooms of a property."""
 
 
-    _description = 'Room description'
+    _description = 'Property surface'
     _name = 'orealestate.composition'
 
 
@@ -128,6 +139,7 @@ class area(models.Model):
     """Types of areas"""
 
 
+    _description = 'Property area'
     _name = 'orealestate.area'
     _order = 'name'
 
@@ -148,7 +160,8 @@ class property(models.Model):
     """Property kind. The name of this object is not perfect.. """
 
 
-    _name = "orealestate.property"
+    _description = 'Property kind'
+    _name = 'orealestate.property'
 
 
     name = fields.Char(string='property kind', required=True, translate=True)

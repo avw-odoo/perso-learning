@@ -48,6 +48,7 @@
         <search string="Search properties">
           <field name="name"/>
           <field name="id"/>
+          <field name="team_id"/>
           <field name="stage_id"/>
           <field name="tag_ids"/>
           <field name="user_id"/>
@@ -376,7 +377,7 @@
       <field name="res_model">orealestate.realestate</field>
       <field name="view_mode">kanban,tree,form</field>
       <field name="view_id"/>
-      <field name="context">{"search_default_current_properties":1}</field>
+      <field name="context" eval="{'search_default_current_properties':1, 'default_team_id': ref('orealestate.orealestate_mandate_team')}"/>
       <field name="help" type="html">
         <p class="oe_view_nocontent_create">
           Click to create a new property.
