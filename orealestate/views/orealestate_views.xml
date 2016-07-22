@@ -100,6 +100,22 @@
       </field>
     </record>
 
+    <!-- Activity analysis search view-->
+    <record id="inherit_crm_activity_report_view_search" model="ir.ui.view">
+      <field name="name">crm.activity.report.search.inherit</field>
+      <field name="model">crm.activity.report</field>
+      <field name="inherit_id" ref="crm.crm_activity_report_view_search"/>
+      <field name="arch" type="xml">
+        <field name="author_id" position="before">
+          <field name="property_id"/>
+        </field>
+        <group expand="1" position="inside">
+          <filter string="Property" context="{'group_by':'property_id'}"/>
+        </group>
+      </field>
+    </record>
+
+
     <!-- Real estate Form view definition crm.crm_lead_opportunities-->
     <record model="ir.ui.view" id="orealestate.form">
         <field name="name">Real Estate form</field>
@@ -288,29 +304,34 @@
             </field>
         </record>
 
-        <template id="qweb_res_partner_emails">
-          <t t-call="report.html_container">
+        <template id="print_property_info">
             <t t-call="report.external_layout">
-              <div class="page">
-                <h4>Partner's emails</h4>
-                  <div t-foreach="docs" t-as="o" class="row mt4 mb4">
-                    <div class="col-md-6"><t t-esc="o.name" /></div>
-                    <div class="col-md-6">
-                      <t t-if="o.email" t-esc="o.email" />
-                      <t t-if="not o.email">-</t>
-                    </div>
-                  </div>
-              </div>
+                <t t-call="report.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                          <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <h2>Report title</h2>
+                                <p>Details of the property : <span t-field="o.name" /></p>
+                                <p>It's a <span t-field="o.realestate_id" /></p>
+                                <p>The total living area is : <span t-field="o.living_area" /> m2</p>
+                                <p>The number of bedroom : <span t-field="o.room_number" /></p>
+                                <p>The price asked is : <span t-field="o.planned_revenue" /></p>
+
+                            </div>
+                        </div>
+                      </div>
+                    </t>
+                </t>
             </t>
-          </t>
         </template>
 
         <report
-          id="report_res_partner_emails"
-          name="orealestate.qweb_res_partner_emails"
-          model="res.partner"
-          string="Emails"
-          report_type="qweb-pdf" />
+          id="report_property_info"
+          model="orealestate.realestate"
+          string="Print property"
+          report_type="qweb-pdf"
+          name="orealestate.print_property_info" />
 
     
     <!-- actions opening views on properties, tag & stages-->
@@ -318,7 +339,6 @@
       <field name="name">Properties</field>
       <field name="res_model">orealestate.realestate</field>
       <field name="view_mode">kanban,tree,form</field>
-      <field name="view_id"/>
       <field name="context" eval="{'search_default_current_properties':1, 'default_team_id': ref('orealestate.orealestate_mandate_team')}"/>
       <field name="help" type="html">
         <p class="oe_view_nocontent_create">
@@ -327,10 +347,6 @@
       </field>
     </record>
 
-    <!--<act_window id="action_realestate_stage"
-           name="property Stages"
-           res_model="orealestate.realestate.stage"
-           view_mode="tree,form" />-->
 
     <act_window id="action_realestate_composition_more"
            name="property composition"
