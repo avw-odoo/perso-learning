@@ -38,7 +38,7 @@ The goal of orealestate is « Real Estate management » basics.
         'security/orealestate_security.xml',
         'security/ir.model.access.csv',
         'data/orealestate_data.xml',
-        'data/orealestate_tip_data.xml',
+        #'data/orealestate_tip_data.xml',
         'views/orealestate_views.xml',
     ],
 
