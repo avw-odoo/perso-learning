@@ -25,9 +25,9 @@ class crm_activity_report(models.Model):
     property_id = fields.Many2one('orealestate.realestate', string='Property', help='Linked property.')
 
 
-    def init(self, cr):
-        tools.drop_view_if_exists(cr, 'crm_activity_report')
-        cr.execute("""
+    def init(self):
+        tools.drop_view_if_exists(self._cr, 'crm_activity_report')
+        self._cr.execute("""
             CREATE OR REPLACE VIEW crm_activity_report AS (
                 select
                     m.id,
@@ -67,12 +67,12 @@ class realestate(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _inherits = {'crm.lead': 'opportunity_id'}
 
-
-    def open_map(self, cr, uid, ids, context=None):
+    @api.multi
+    def open_map(self):
         """Open new tab in google maps to show the property in the map."""
         if context is None:
             context = {}
-        partner = self.browse(cr, uid, ids, context=context)[0]
+        partner = self.browse(self._cr, self._uid, self._ids, context=context)[0]
         url="http://maps.google.com/maps?oi=map&q="
         if partner.street:
             url+=partner.street.replace(' ','+')
@@ -88,7 +88,7 @@ class realestate(models.Model):
         'target': 'new'
         }
 
-
+    @api.multi
     def open_journey(self, cr, uid, ids, context=None):
         """New ininerance on google maps."""
         if context is None:
