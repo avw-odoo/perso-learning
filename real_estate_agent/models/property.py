@@ -8,7 +8,17 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-            
+
+class PropertyType(models.Model):
+    """ The type of property """
+    _name = 'property.type'
+
+    name = fields.Char('Type', required=True)
+    meta_type = fields.Char('Kind of type', required=True)
+    description = fields.Text('Description')
+        
+
+
 class Property(models.Model):
     """ Property for sale """
     _name = 'property'
@@ -25,6 +35,7 @@ class Property(models.Model):
     active = fields.Boolean(default=True, track_visibility='onchange')
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     attachment_ids = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'property')], string='Attachments')
+    property_type_id = fields.Many2one('property.type', string='Property type', help='The type of property', required=True)
 
 
     @api.multi
