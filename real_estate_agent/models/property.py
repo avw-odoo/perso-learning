@@ -9,14 +9,17 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+
+
 class PropertyType(models.Model):
     """ The type of property """
     _name = 'property.type'
 
-    name = fields.Char('Type', required=True)
-    meta_type = fields.Char('Kind of type', required=True)
-    description = fields.Text('Description')
+    name = fields.Char('Type', required=True, translate=True)
+    meta_type = fields.Char('Kind of type', required=True, translate=True)
+    description = fields.Text('Description', translate=True)
         
+
 
 
 class Property(models.Model):
@@ -25,7 +28,7 @@ class Property(models.Model):
     _description = 'Property for sale'
     _inherit = ['mail.thread']
 
-    name = fields.Char('Reference', required=True, track_visibility='onchange')
+    name = fields.Char('Title', required=True, track_visibility='onchange')
     street = fields.Char(track_visibility='onchange')
     street2 = fields.Char(track_visibility='onchange')
     zip = fields.Char(change_default=True, track_visibility='onchange')
@@ -35,8 +38,7 @@ class Property(models.Model):
     active = fields.Boolean(default=True, track_visibility='onchange')
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     attachment_ids = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'property')], string='Attachments')
-    property_type_id = fields.Many2one('property.type', string='Property type', help='The type of property', required=True)
-
+    property_type_id = fields.Many2one('property.type', string='Property type', help='The type of property', required=True, track_visibility='onchange')
 
     @api.multi
     def _address_as_string(self):

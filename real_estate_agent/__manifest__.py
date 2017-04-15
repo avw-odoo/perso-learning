@@ -16,6 +16,7 @@ Details TBD
         'views/property_views.xml',
         'views/map_website_view.xml',
         'data/map_website_data.xml',
+        'data/property_type_data.xml',
         'views/res_users_view.xml',
         'views/res_partner_view.xml',
     ],

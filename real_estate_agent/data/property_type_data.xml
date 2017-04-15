@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="property_type_apartments_1" model="property.type">
+        <field name="name">Apartment</field>
+        <field name="meta_type">Apartment</field>
+        <field name="description">Simple apartment</field>
+    </record>
+    <record id="property_type_apartments_2" model="property.type">
+        <field name="name">Duplex</field>
+        <field name="meta_type">Apartment</field>
+        <field name="description">Apartment with one floor</field>
+    </record>
+    <record id="property_type_apartments_3" model="property.type">
+        <field name="name">Loft</field>
+        <field name="meta_type">Apartment</field>
+    </record>
+    <record id="property_type_apartments_4" model="property.type">
+        <field name="name">Flat</field>
+        <field name="meta_type">Apartment</field>
+        <field name="description">Small apartment</field>
+    </record>
+    <record id="property_type_apartments_5" model="property.type">
+        <field name="name">Triplex</field>
+        <field name="meta_type">Apartment</field>
+        <field name="description">Apartment with two floor</field>
+    </record>
+    <record id="property_type_business_premises_1" model="property.type">
+        <field name="name">Atelier</field>
+        <field name="meta_type">Business premises</field>
+        <field name="description">Atelier (Workshop)</field>
+    </record>
+    <record id="property_type_business_premises_2" model="property.type">
+        <field name="name">Office</field>
+        <field name="meta_type">Business premises</field>
+    </record>
+    <record id="property_type_business_premises_3" model="property.type">
+        <field name="name">Warehouse</field>
+        <field name="meta_type">Business premises</field>
+    </record>
+    <record id="property_type_business_premises_4" model="property.type">
+        <field name="name">Farm</field>
+        <field name="meta_type">Business premises</field>
+    </record>
+    <record id="property_type_business_premises_5" model="property.type">
+        <field name="name">Hotel</field>
+        <field name="meta_type">Business premises</field>
+    </record>
+    <record id="property_type_business_premises_6" model="property.type">
+        <field name="name">Building</field>
+        <field name="meta_type">Business premises</field>
+    </record>
+    <record id="property_type_business_premises_7" model="property.type">
+        <field name="name">Business premises</field>
+        <field name="meta_type">Business premises</field>
+    </record>
+    <record id="property_type_castles_1" model="property.type">
+        <field name="name">Bastide</field>
+        <field name="meta_type">Castle or character building</field>
+    </record>
+    <record id="property_type_castles_2" model="property.type">
+        <field name="name">Castle</field>
+        <field name="meta_type">Castle or character building</field>
+    </record>
+    <record id="property_type_lands_1" model="property.type">
+        <field name="name">Woods</field>
+        <field name="meta_type">Land</field>
+    </record>
+    <record id="property_type_lands_2" model="property.type">
+        <field name="name">Meadow</field>
+        <field name="meta_type">Land</field>
+    </record>
+    <record id="property_type_lands_3" model="property.type">
+        <field name="name">Forest</field>
+        <field name="meta_type">Land</field>
+    </record>
+    <record id="property_type_lands_4" model="property.type">
+        <field name="name">Building land</field>
+        <field name="meta_type">Land</field>
+    </record>
+    <record id="property_type_houses_1" model="property.type">
+        <field name="name">Bungalow</field>
+        <field name="meta_type">House</field>
+        <field name="description">Single family house built on one level</field>
+    </record>
+    <record id="property_type_houses_2" model="property.type">
+        <field name="name">Cottage</field>
+        <field name="meta_type">House</field>
+    </record>
+    <record id="property_type_houses_3" model="property.type">
+        <field name="name">Farmette</field>
+        <field name="meta_type">House</field>
+    </record>
+    <record id="property_type_houses_4" model="property.type">
+        <field name="name">Barn</field>
+        <field name="meta_type">House</field>
+    </record>
+    <record id="property_type_houses_5" model="property.type">
+        <field name="name">House</field>
+        <field name="meta_type">House</field>
+    </record>
+    <record id="property_type_houses_6" model="property.type">
+        <field name="name">Villa</field>
+        <field name="meta_type">House</field>
+    </record>
+    <record id="property_type_houses_7" model="property.type">
+        <field name="name">Town house</field>
+        <field name="meta_type">House</field>
+    </record>
+    <record id="property_type_parking_1" model="property.type">
+        <field name="name">Garage/Parking</field>
+        <field name="meta_type">Parking</field>
+    </record>
+    
+    
+</odoo>
