@@ -39,6 +39,7 @@ class Property(models.Model):
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     attachment_ids = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'property')], string='Attachments')
     property_type_id = fields.Many2one('property.type', string='Property type', help='The type of property', required=True, track_visibility='onchange')
+    property_kind = fields.Char(related='property_type_id.meta_type', store=True, readonly=True)
 
     @api.multi
     def _address_as_string(self):

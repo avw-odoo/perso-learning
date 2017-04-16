@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Report template-->
+    <template id="report_property_summary">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <br/>
+                        <h2>Property summary</h2>
+                        <div class="row mt32 mb32">
+                            <div class="col-xs-4">
+                                <strong>Description:</strong>
+                                <p t-field="o.name"/>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>Type:</strong>
+                                <p> <span t-field="o.property_type_id"/> (<span t-field="o.property_kind"/>)</p>
+                            </div>
+                            <div class="col-xs-2">
+                                <strong>Created by:</strong>
+                                <p t-field="o.create_uid"/>
+                            </div>
+                            <div class="col-xs-2">
+                                <strong>Created on:</strong>
+                                <p t-field="o.create_date" t-options ='{"format": "dd/MM/yyyy"}'/>
+                            </div>
+                        </div>
+                        <p><strong>Property address:</strong></p>
+                        <p>
+                            <span t-if="o.street"/><span t-field="o.street"/><br/>
+                            <span t-if="o.street2"/><span t-field="o.street2"/><br/>
+                            <span t-if="o.zip"/><span t-field="o.zip"/> <span t-if="o.city"/><span t-field="o.city"/><br/>
+                            <span t-if="o.country_id"/><span t-field="o.country_id"/>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+<!-- Report action -->
+    <report
+    id="action_property_summary"
+    model="property"
+    string="Property summary"
+    report_type="qweb-pdf"
+    name="real_estate_agent.report_property_summary"
+    file="real_estate_agent.report_property_summary"/>
+
+</odoo>
