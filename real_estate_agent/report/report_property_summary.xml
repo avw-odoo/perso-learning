@@ -11,29 +11,34 @@
                         <h2>Property summary</h2>
                         <div class="row mt32 mb32">
                             <div class="col-xs-4">
+                                <p><strong>Property address:</strong></p>
+                                <p>
+                                    <span t-if="o.street"/><span t-field="o.street"/><br/>
+                                    <span t-if="o.zip"/><span t-field="o.zip"/> <span t-if="o.city"/><span t-field="o.city"/><br/>
+                                    <span t-if="o.country_id"/><span t-field="o.country_id"/>
+                                </p>
+                            </div>
+                            <div class="col-xs-3">
                                 <strong>Description:</strong>
                                 <p t-field="o.name"/>
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-xs-2">
                                 <strong>Type:</strong>
                                 <p> <span t-field="o.property_type_id"/> (<span t-field="o.property_kind"/>)</p>
                             </div>
-                            <div class="col-xs-2">
-                                <strong>Created by:</strong>
-                                <p t-field="o.create_uid"/>
-                            </div>
-                            <div class="col-xs-2">
+                            <div class="col-xs-3">
                                 <strong>Created on:</strong>
                                 <p t-field="o.create_date" t-options ='{"format": "dd/MM/yyyy"}'/>
                             </div>
                         </div>
-                        <p><strong>Property address:</strong></p>
-                        <p>
-                            <span t-if="o.street"/><span t-field="o.street"/><br/>
-                            <span t-if="o.street2"/><span t-field="o.street2"/><br/>
-                            <span t-if="o.zip"/><span t-field="o.zip"/> <span t-if="o.city"/><span t-field="o.city"/><br/>
-                            <span t-if="o.country_id"/><span t-field="o.country_id"/>
-                        </p>
+                        <div class="row mt32 mb32">
+                            <div class="col-xs-12">
+                                <p><strong>Photos:</strong></p>
+                                <t t-foreach="o.attachment_ids" t-as="i">
+                                    <img t-att-src="'data:image/png;base64,%s' % i.datas" height="150" class="img-rounded"/>
+                                </t>
+                            </div>
+                        </div>
                     </div>
                 </t>
             </t>
