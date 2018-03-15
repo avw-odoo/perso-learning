@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_orealestate_realestate_manager,orealestate.realestate.manager,model_orealestate_realestate,orealestate.group_orealestate_manager,1,1,1,1
-access_orealestate_composition_manager,orealestate.composition.manager,model_orealestate_composition,orealestate.group_orealestate_manager,1,1,1,1
-access_orealestate_room_manager,orealestate.area.manager,model_orealestate_area,orealestate.group_orealestate_manager,1,1,1,1
-access_orealestate_property_manager,orealestate.property.manager,model_orealestate_property,orealestate.group_orealestate_manager,1,1,1,1
-access_orealestate_realestate_user,orealestate.realestate.user,model_orealestate_realestate,orealestate.group_orealestate_user,1,0,0,0
-access_orealestate_composition_user,orealestate.composition.user,model_orealestate_composition,orealestate.group_orealestate_user,1,0,0,0
-access_orealestate_room_user,orealestate.area.user,model_orealestate_area,orealestate.group_orealestate_user,1,0,0,0
-access_orealestate_property_user,orealestate.property.user,model_orealestate_property,orealestate.group_orealestate_user,1,0,0,0
