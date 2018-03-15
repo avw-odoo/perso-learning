@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import property
-import map_website
-import res_partner
-import res_users
+from . import property
+from . import map_website
+from . import res_partner
+from . import res_users
