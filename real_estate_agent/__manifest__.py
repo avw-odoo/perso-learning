@@ -6,7 +6,7 @@
     'version': '0.1',
     'category': 'Real Estate',
     'sequence': 1000,
-    'depends': ['report', 'mail', 'document'],
+    'depends': ['mail', 'document'],
     'summary': 'Manage properties for sale as a Real Estate Agent.',
     'description': """
 Manage properties for sale as a Real Estate Agent.
