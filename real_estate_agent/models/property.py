@@ -62,7 +62,7 @@ class Property(models.Model):
     @api.model
     def _prepare_url(self, url, replace):
         assert url, 'Missing URL'
-        for key, value in replace.iteritems():
+        for key, value in replace.items():
             if not isinstance(value, (str, unicode)):
                 # for latitude and longitude which are floats
                 value = unicode(value)
