@@ -19,7 +19,7 @@ Details TBD
         'views/res_partner_view.xml',
         'data/map_website_data.xml',
         'data/property_type_data.xml',
-        'report/report_property_summary.xml',
+        #'report/report_property_summary.xml',
     ],
     'images': ['static/description/icon.png'],
     'post_init_hook': 'set_default_map_settings',
