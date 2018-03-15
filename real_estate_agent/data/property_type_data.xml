@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Specify the default paperformat EU A4 -->
+    <!-- Specify the default paperformat EU A4
     <record model="res.company" id="base.main_company">
         <field name="rml_paper_format">us_letter</field>
         <field name="paperformat_id" ref="report.paperformat_euro"/>
-    </record>
+    </record>-->
     <!-- Kind of types values -->
     <record id="property_type_apartments_1" model="property.type">
         <field name="name">Apartment</field>
